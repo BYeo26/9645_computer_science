@@ -1,4 +1,5 @@
 [
   "mermaid-tools",
-  "code-emitter"
+  "code-emitter",
+  "obsidian-git"
 ]
