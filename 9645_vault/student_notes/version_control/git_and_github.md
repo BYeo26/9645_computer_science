@@ -17,4 +17,8 @@ git push #take local version and push it to the remote version
 ### how to stage, commit and push from git plugin on obsidian
 - to stage, press the plus button at the top of the panel to *'stage all'*
 - to stage individual files, press the plus button on the right of the file name
-- 
+- change the commit message (the text input at the top) to something useful and easy to recognise
+- to push, press the up arrow
+- to do it in one step, press the arrow inside the circle
+
+## github
