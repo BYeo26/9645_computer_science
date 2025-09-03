@@ -38,6 +38,13 @@ Give another example program and suggest what might be represented as an object 
 ---
 
 **A:**
+```python
+class Doctor:
+	def __init__(self):
+		print("hello!")
+
+cardiologist = Doctor()
+```
 
 ---
 
@@ -105,7 +112,19 @@ Instantiate three employees inside variables named `bill`, `bob` and `ben`.
 ---
 
 **A:**
+```python
+class Employee:
+	def __init__(self):
+		self.salary = findPaymentAmount()
 
+def findPaymentAmount():
+	paymentAmount = int(input("How much am I getting paid?"))
+	return paymentAmount
+
+bob = Employee()
+bill = Employee()
+ben = Employee()
+```
 ---
 
 *To save, share and back up your work:*
@@ -170,6 +189,14 @@ Create an instance of a `Student` - using yourself as an example.
 ---
 
 **A:**
+```python
+class Student:
+	def __init__(self, className):
+		self.birthday = "08/05/2009"
+		self.className = className
+
+Brandon = Student("CMC_KS5_27")
+```
 
 ---
 
@@ -251,7 +278,39 @@ Create getter methods so that every property contained within a given student ca
 ---
 
 **A:**
+```python
+class Student:
+	def __init__(self, className):
+		self.birthday = "08/05/2009"
+		self.className = className
+		self.favSubject = ""
+		self.numECAs = 0
+		self.grades = []
+		self.GPA = 0.0
+	
+	def setFavoriteSubject(self, favSubject) -> str:
+		if len(favSubject) >= 3:
+			self.favSubject = favSubject
+		else:
+			print("Favorite Subject Invalid")
+	
+	def addGrade(self, grades) -> list:
+		self.grades.append(grades)
+	
+	def addECA(self) -> int:
+		self.numECAs += 1
+		
+		
+if __name__ == "__main__":
+	Brandon = Student("CMC_KS5_27")
+	Brandon.setFavoriteSubject("Maths")
+	Brandon.addGrade("E")
+	Brandon.addECA()
+	print(f"{Brandon.favSubject}, {Brandon.grades}, {Brandon.numECAs}")
 
+
+
+```
 ---
 
 *To save, share and back up your work:*
