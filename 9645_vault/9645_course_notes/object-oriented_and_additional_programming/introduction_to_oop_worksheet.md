@@ -425,6 +425,76 @@ Implement getters / setters for the new properties as required.
 ---
 
 **A:**
+```python
+class Student:
+	def __init__(self, className):
+		self.birthday = "08/05/2009"
+		self.className = className
+		self.favSubject = ""
+		self.numECAs = 0
+		self.grades = []
+		self.GPA = 0.0
+		self.house = ""
+		self._lockerNumber = 0
+		self.__lockerPin = 0
+	
+	def setFavoriteSubject(self, favSubject) -> str:
+		if len(favSubject) >= 3:
+			self.favSubject = favSubject
+		else:
+			print("Favorite Subject Invalid")
+	
+	def addGrade(self, grades) -> list:
+		self.grades.append(grades)
+	
+	def addECA(self) -> int:
+		self.numECAs += 1
+		
+	def calculateGPA(self) -> float:
+		totalScore = 0
+		scoreEquivalent = [["A*", 4], ["A", 3.2],["B", 2.6], ["C", 1.8], ["D", 1.0], ["E", 0.2], ["U", 0]]
+		for grade in self.grades:
+			for score in scoreEquivalent:
+				if score[0] == grade:
+					totalScore += score[1]
+		self.GPA = totalScore/len(self.grades)
+	
+	def setHouse(self, house) -> str:
+		houses = ["Youde", "Clementi", "Bowen", "Maclehose"]
+		if house in houses:
+			self.house = house
+		else:
+			print("Invalid House")
+	
+	def setLockerNumber(self, num) -> int:
+		self._lockerNumber = num
+	
+	def setLockerPin(self, num) -> str:
+		self.__LockerPin = num
+	
+	def getLockerInfo(self):
+		lockerPin = self.__LockerPin
+		lockerNum = self._lockerNumber
+		print(f"Locker Number = {lockerNum}, Locker Pin = {lockerPin}")
+							
+if __name__ == "__main__":
+	Brandon = Student("CMC_KS5_27")
+	Brandon.setFavoriteSubject("Maths")
+	Brandon.addGrade("E")
+	Brandon.addGrade("A*")
+	Brandon.addGrade("U")
+	Brandon.addECA()
+	Brandon.setHouse("Youde")
+	Brandon.setLockerNumber(365)
+	Brandon.setLockerPin("1111")
+	Brandon.getLockerInfo()
+	Brandon.calculateGPA()
+	print(f"{Brandon.favSubject}, {Brandon.grades}, {Brandon.numECAs}", end=", ")
+	print("{:.1f}".format(Brandon.GPA))
+
+
+```
+
 
 ---
 
