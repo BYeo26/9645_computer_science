@@ -342,6 +342,52 @@ The GPA can be calculated by finding the point score for each grade the student 
 ---
 
 **A:**
+```python
+class Student:
+	def __init__(self, className):
+		self.birthday = "08/05/2009"
+		self.className = className
+		self.favSubject = ""
+		self.numECAs = 0
+		self.grades = []
+		self.GPA = 0.0
+	
+	def setFavoriteSubject(self, favSubject) -> str:
+		if len(favSubject) >= 3:
+			self.favSubject = favSubject
+		else:
+			print("Favorite Subject Invalid")
+	
+	def addGrade(self, grades) -> list:
+		self.grades.append(grades)
+	
+	def addECA(self) -> int:
+		self.numECAs += 1
+		
+	def calculateGPA(self) -> float:
+		totalScore = 0
+		scoreEquivalent = [["A*", 4], ["A", 3.2],["B", 2.6], ["C", 1.8], ["D", 1.0], ["E", 0.2], ["U", 0]]
+		for grade in self.grades:
+			for score in scoreEquivalent:
+				if score[0] == grade:
+					totalScore += score[1]
+		self.GPA = totalScore/len(self.grades)
+					
+		
+		
+if __name__ == "__main__":
+	Brandon = Student("CMC_KS5_27")
+	Brandon.setFavoriteSubject("Maths")
+	Brandon.addGrade("E")
+	Brandon.addGrade("A*")
+	Brandon.addGrade("U")
+	Brandon.addECA()
+	Brandon.calculateGPA()
+	print(f"{Brandon.favSubject}, {Brandon.grades}, {Brandon.numECAs}", end=", ")
+	print("{:.1f}".format(Brandon.GPA))
+
+
+```
 
 ---
 
