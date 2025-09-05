@@ -172,7 +172,12 @@ class Student:
 					totalScore += score[1]
 		self.GPA = totalScore/len(self.grades)
 					
-		
+class internationalStudent(Student):
+	def __init__(self):
+		super().__init__(birthday, className, favSubject, numECAs, grades, GPA)
+		self.__feePaid = 0.0
+		self.nationality = ""
+		self._gradeExpectedByParent = 0.0
 		
 if __name__ == "__main__":
 	Brandon = Student("CMC_KS5_27")
