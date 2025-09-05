@@ -457,6 +457,100 @@ Override the `calculate_gpa` method in the `InternationalStudent` class. The ove
 ---
 
 **A:**
+```python
+class Student:
+	def __init__(self, className, name):
+		self.birthday = "08/05/2009"
+		self.name = name
+		self.className = className
+		self.favSubject = ""
+		self.numECAs = 0
+		self.grades = []
+		self.GPA = 0.0
+	
+	def setFavoriteSubject(self, favSubject) -> str:
+		if len(favSubject) >= 3:
+			self.favSubject = favSubject
+		else:
+			print("Favorite Subject Invalid")
+	
+	def addGrade(self, grades) -> list:
+		self.grades.append(grades)
+	
+	def addECA(self) -> int:
+		self.numECAs += 1
+		
+	def calculateGPA(self) -> float:
+		totalScore = 0
+		scoreEquivalent = [["A*", 4], ["A", 3.2],["B", 2.6], ["C", 1.8], ["D", 1.0], ["E", 0.2], ["U", 0]]
+		for grade in self.grades:
+			for score in scoreEquivalent:
+				if score[0] == grade:
+					totalScore += score[1]
+		self.GPA = totalScore/len(self.grades)
+					
+class internationalStudent(Student):
+	def __init__(self, className, nationality, name):
+		super().__init__(className, name)
+		self.__feePaid = 0.0
+		self.nationality = ""
+		self._gradeExpectedByParent = 0.0
+	
+	def addFeePaid(self, feePaid):
+		self.__feePaid += feePaid
+	
+	def setGradeExpected(self, gradeExpected):
+		self._gradeExpectedByParent = gradeExpected
+		
+	def findNecessaryTutors(self):
+		scoreEquivalent = [["A*", 4], ["A", 3.2],["B", 2.6], ["C", 1.8], ["D", 1.0], ["E", 0.2], ["U", 0]]
+		for grade in self.grades:
+			currentScore = 0
+			for score in scoreEquivalent:
+				if score[0] == grade:
+					currentScore = score[1]
+			if currentScore < self._gradeExpectedByParent:
+				print("Tutor needed")
+	
+	def calculateGPA(self):
+		originalGPA = super().calculateGPA()
+		self.GPA = (originalGPA * (len(self.name)/100))
+		
+		
+if __name__ == "__main__":
+	robert = internationalStudent("10A", "American", "robert")
+	robert.setFavoriteSubject("Maths")
+	robert.addGrade("B")
+	robert.addGrade("A*")
+	robert.addGrade("E")
+	robert.addECA()
+	robert.addECA()
+	robert.calculateGPA()
+	robert.addFeePaid(19000.30)
+	robert.setGradeExpected(3.0)
+	robert.findNecessaryTutors()
+	jim = internationalStudent("12B", "British", "jim")
+	jim.setFavoriteSubject("English")
+	jim.addGrade("A")
+	jim.addGrade("A*")
+	jim.addGrade("A*")
+	jim.calculateGPA()
+	jim.addFeePaid(12000)
+	jim.setGradeExpected(2.0)
+	jim.findNecessaryTutors()
+	bob = internationalStudent("11C", "Chinese", "bob")
+	bob.setFavoriteSubject("Biology")
+	bob.addGrade("C")
+	bob.addGrade("A")
+	bob.addGrade("B")
+	bob.addECA()
+	bob.calculateGPA()
+	bob.addFeePaid(1300)
+	bob.setGradeExpected(4.0)
+	bob.findNecessaryTutors()
+	print("robert: {.:1f}, jim: {.:1f}, bob: {.:1f}".fomat(robert.GPA, jim.GPA, bob.GPA))
+```
+
 
 ---
 
