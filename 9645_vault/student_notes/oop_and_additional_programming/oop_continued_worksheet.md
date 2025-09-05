@@ -216,6 +216,80 @@ Instantiate three `InternationalStudent` objects and set their default propertie
 ---
 
 **A:**
+```python
+class Student:
+	def __init__(self, className):
+		self.birthday = "08/05/2009"
+		self.className = className
+		self.favSubject = ""
+		self.numECAs = 0
+		self.grades = []
+		self.GPA = 0.0
+	
+	def setFavoriteSubject(self, favSubject) -> str:
+		if len(favSubject) >= 3:
+			self.favSubject = favSubject
+		else:
+			print("Favorite Subject Invalid")
+	
+	def addGrade(self, grades) -> list:
+		self.grades.append(grades)
+	
+	def addECA(self) -> int:
+		self.numECAs += 1
+		
+	def calculateGPA(self) -> float:
+		totalScore = 0
+		scoreEquivalent = [["A*", 4], ["A", 3.2],["B", 2.6], ["C", 1.8], ["D", 1.0], ["E", 0.2], ["U", 0]]
+		for grade in self.grades:
+			for score in scoreEquivalent:
+				if score[0] == grade:
+					totalScore += score[1]
+		self.GPA = totalScore/len(self.grades)
+					
+class internationalStudent(Student):
+	def __init__(self, className, nationality):
+		super().__init__(className)
+		self.__feePaid = 0.0
+		self.nationality = ""
+		self._gradeExpectedByParent = 0.0
+	
+	def addFeePaid(self, feePaid):
+		self.__feePaid += feePaid
+	
+	def setGradeExpected(self, gradeExpected):
+		self._gradeExpectedByParent = gradeExpected
+		
+if __name__ == "__main__":
+	robert = internationalStudent("10A", "American")
+	robert.setFavoriteSubject("Maths")
+	robert.addGrade("B")
+	robert.addGrade("A*")
+	robert.addGrade("E")
+	robert.addECA()
+	robert.addECA()
+	robert.calculateGPA()
+	robert.addFeePaid(19000.30)
+	robert.setGradeExpected(4.0)
+	jim = internationalStudent("12B", "British")
+	jim.setFavoriteSubject("English")
+	jim.addGrade("A")
+	jim.addGrade("A*")
+	jim.addGrade("A*")
+	jim.calculateGPA()
+	jim.addFeePaid(12000)
+	jim.setGradeExpected(4.0)
+	bob = internationalStudent("11C", "Chinese")
+	bob.setFavoriteSubject("Biology")
+	bob.addGrade("C")
+	bob.addGrade("A")
+	bob.addGrade("B")
+	bob.addECA()
+	bob.calculateGPA()
+	bob.addFeePaid(1300)
+	bob.setGradeExpected(4.0)
+
+```
 
 ---
 
